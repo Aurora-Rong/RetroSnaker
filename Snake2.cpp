@@ -1,8 +1,8 @@
 /*
-±àÒëÆ÷°æ±¾£ºMicrosoft Visual C++ 2010 Express
-µçÄÔ»·¾³£ºWindows10×¨Òµ°æ
-µÚÈı·½¿â£ºeasyX
-×÷Õß£ºHexler
+ç¼–è¯‘å™¨ç‰ˆæœ¬ï¼šMicrosoft Visual C++ 2010 Express
+ç”µè„‘ç¯å¢ƒï¼šWindows10ä¸“ä¸šç‰ˆ
+ç¬¬ä¸‰æ–¹åº“ï¼šeasyX
+ä½œè€…ï¼šHexler
 */
 #include<time.h>
 #include<conio.h>
@@ -19,33 +19,31 @@ SNAKE play,egg,*head;
 int flag=1;
 int score=1;
 int S_x,S_y,mode;
-//XYÖá¶şÎ¬Í¼
+//XYè½´äºŒç»´å›¾
 void Start();
 int main();
 void Map()
 {
 	initgraph(Map_X,Map_Y);
-	setcolor(BLUE);
-	setfillcolor(BLACK);
-	TCHAR s[]=_T("Ì°³ÔÉß By Hexler");
+	setcolor(BLUE); setfillcolor(BLACK);
+	TCHAR s[]=_T("è´ªåƒè›‡ By Hexler");
 	setlinestyle(PS_DASHDOT);
-	solidrectangle(0,0,720,560);
+	solidrectangle(0,0,Map_X,Map_Y);
 	int A_x=40,A_y=40,B_x=40,B_y=40,i;
-	
-	for(i=0;i<=16;i++)
+	for(i=0;i<=Map_X/40;i++)
 	{
-		line(A_x,40,B_x,520);
+		line(A_x,40,B_x,Map_Y-40);
 		A_x+=40; B_x+=40;
 	}
-	for(i=0;i<=12;i++)
+	for(i=0;i<=Map_Y/40;i++)
 	{
-		line(40,A_y,680,B_y);
+		line(40,A_y,Map_X-40,B_y);
 		A_y+=40; B_y+=40;
 	}
 	settextcolor(GREEN);
 	outtextxy(300,534,s);
 }
-//PlanÄ£Ê½0ÊÇ»­µ°£¬Ä£Ê½1ÊÇ»­·½¿é£¬Ä£Ê½2ÊÇÑÚ¸ÇÎ²²¿£¬Ä£Ê½3ÊÇË¢ĞÂÉÏ¿òÌáÊ¾
+//Planæ¨¡å¼0æ˜¯ç”»è›‹ï¼Œæ¨¡å¼1æ˜¯ç”»æ–¹å—ï¼Œæ¨¡å¼2æ˜¯æ©ç›–å°¾éƒ¨ï¼Œæ¨¡å¼3æ˜¯åˆ·æ–°ä¸Šæ¡†æç¤º
 void Draw(int x,int y,int plan)
 {
 	setfillcolor(WHITE);
@@ -65,7 +63,7 @@ void Draw(int x,int y,int plan)
 		solidroundrect(80,0,600,39,40,40);
 	}
 }
-//ÊµÊ±°´Å¥·´À¡
+//å®æ—¶æŒ‰é’®åé¦ˆ
 void Botton()
 {
 	int key;
@@ -73,11 +71,11 @@ void Botton()
 	{
 		while(kbhit()!=0)
 		key = getch();
-		TCHAR a[]=_T("ÏòÉÏ");
-		TCHAR b[]=_T("ÏòÏÂ");
-		TCHAR c[]=_T("Ïò×ó");
-		TCHAR d[]=_T("ÏòÓÒ");
-		TCHAR e[]=_T("ÔİÍ£");
+		TCHAR a[]=_T("å‘ä¸Š");
+		TCHAR b[]=_T("å‘ä¸‹");
+		TCHAR c[]=_T("å‘å·¦");
+		TCHAR d[]=_T("å‘å³");
+		TCHAR e[]=_T("æš‚åœ");
 		switch(key)
 		{
 			case 72: if(mode==1&&score>1) break; outtextxy(10,534,a);  mode=0; break;
@@ -89,7 +87,7 @@ void Botton()
 		 }
 	}
 }
-//Ëæ»úÉú³Éµ°
+//éšæœºç”Ÿæˆè›‹
 void Egg()
 {
 	int x,y;
@@ -111,7 +109,7 @@ void Egg()
 void move()
 {
 	TCHAR goal[5];
-	_stprintf(goal,_T("µÃ·Ö£º%d"),score);
+	_stprintf(goal,_T("å¾—åˆ†ï¼š%d"),score);
 	outtextxy(620,10,goal);
 	switch(mode)
 	{
@@ -161,7 +159,7 @@ void move()
 	else
 	{
 		settextcolor(RED);
-		TCHAR s[]=_T("ÓÎÏ·½áÊø °´¿Õ¸ñÖØĞÂ¿ªÊ¼ °´ÆäÓà¼üÍË³ö");
+		TCHAR s[]=_T("æ¸¸æˆç»“æŸ æŒ‰ç©ºæ ¼é‡æ–°å¼€å§‹ æŒ‰å…¶ä½™é”®é€€å‡º");
 		outtextxy(230,10,s);
 		if(' '==getch()) 
 		{
@@ -178,7 +176,7 @@ void Start()
 	head=&play;
 	play.next=NULL;
 	Map();
-	TCHAR s[]=_T("°´ÈÎÒâ¼ü¿ªÊ¼ÓÎÏ·");
+	TCHAR s[]=_T("æŒ‰ä»»æ„é”®å¼€å§‹æ¸¸æˆ");
 	settextcolor(RED);
 	srand((unsigned)time(NULL));
 	x=rand()%16+1; y=rand()%12+1;
@@ -189,6 +187,7 @@ void Start()
 	outtextxy(290,15,s);
 	getch();
 	Draw(0,0,3);
+	BeginBatchDraw();
 }
 int main()
 {
@@ -197,9 +196,11 @@ int main()
 	{
 		Botton();
 		move();
+		FlushBatchDraw();
 		Sleep(350);
 	}
 	getch();
+	EndBatchDraw();
 	closegraph();
 	return 0;
 }
